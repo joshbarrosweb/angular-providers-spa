@@ -1,0 +1,99 @@
+<h1 class="mt-4">Service</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">New</li>
+</ol>
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Service saved/updated successfully!
+        </div>
+
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngFor="let error of errors"
+        >
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Client: </label
+          ><select
+            class="form-control"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="service.clientId"
+          >
+            <option value="">Select...</option>
+            <option *ngFor="let client of clients" [ngValue]="client.id">
+              {{ client.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Description:</label>
+          <input
+            class="form-control"
+            [(ngModel)]="service.description"
+            type="text"
+            name="description"
+            id="inputDescription"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Date:</label>
+          <input
+            class="form-control"
+            [(ngModel)]="service.date"
+            type="text"
+            name="date"
+            id="inputDate"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Price:</label>
+          <input
+            class="form-control"
+            [(ngModel)]="service.price"
+            type="text"
+            name="price"
+            id="inputPrice"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-save"></i>Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger ml-1"
+          routerLink="/services-list"
+        >
+          <i class="fa fa-arrow-alt-circle-left"></i> Return
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

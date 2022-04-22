@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from '../../../services/clients.service';
-import { Client } from '../../../interfaces/Client';
+import { ClientType } from '../../../interfaces/ClientType';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./clients-form.component.css'],
 })
 export class ClientsFormComponent implements OnInit {
-  client: Client;
+  client: ClientType;
 
   success: boolean = false;
   errors: String[];
@@ -21,11 +21,11 @@ export class ClientsFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.client = new Client();
+    this.client = new ClientType();
   }
 
   ngOnInit(): void {
-    let params: Observable<Params> = this.activatedRoute.params;
+    let params: Observable<any> = this.activatedRoute.params;
     params.subscribe((urlParams) => {
       this.id = urlParams['id'];
       if (this.id) {
@@ -34,7 +34,7 @@ export class ClientsFormComponent implements OnInit {
           .subscribe(
             (response) => (
               (this.client = response),
-              (errorResponse) => (this.client = new Client())
+              (errorResponse) => (this.client = new ClientType())
             )
           );
       }

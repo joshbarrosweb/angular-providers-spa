@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientsService } from 'src/app/services/clients.service';
-import { Client } from '../../../interfaces/Client';
+import { ClientType } from '../../../interfaces/ClientType';
 
 @Component({
   selector: 'app-clients-list',
@@ -9,8 +9,8 @@ import { Client } from '../../../interfaces/Client';
   styleUrls: ['./clients-list.component.css'],
 })
 export class ClientsListComponent implements OnInit {
-  clients: Client[] = [];
-  selectedClient: Client;
+  clients: ClientType[] = [];
+  selectedClient: ClientType;
   successMessage: string;
   errorMessage: string;
 
@@ -26,7 +26,7 @@ export class ClientsListComponent implements OnInit {
     this.router.navigate(['/clients-form']);
   }
 
-  deleteModal(client: Client) {
+  deleteModal(client: ClientType) {
     this.selectedClient = client;
   }
 
